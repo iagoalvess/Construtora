@@ -5,7 +5,11 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
+<<<<<<< HEAD
     <orderEntry type="inheritedJdk" />
+=======
+    <orderEntry type="jdk" jdkName="openjdk-23" jdkType="JavaSDK" />
+>>>>>>> b7a3a51e2c706b03a58bec27f25283912d542e9b
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
