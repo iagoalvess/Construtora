@@ -17,28 +17,21 @@ public class MainView {
     }
 
     private static void placeLoginComponents(JPanel panel, JFrame frame) {
-        panel.setLayout(null);
+        // Usando GroupLayout para um layout mais organizado
+        GroupLayout layout = new GroupLayout(panel);
+        panel.setLayout(layout);
+        layout.setAutoCreateGaps(true);
+        layout.setAutoCreateContainerGaps(true);
 
         JLabel userLabel = new JLabel("Usuário:");
-        userLabel.setBounds(50, 50, 80, 25);
-        panel.add(userLabel);
-
         JTextField userText = new JTextField(20);
-        userText.setBounds(150, 50, 165, 25);
-        panel.add(userText);
 
         JLabel passwordLabel = new JLabel("Senha:");
-        passwordLabel.setBounds(50, 100, 80, 25);
-        panel.add(passwordLabel);
-
         JPasswordField passwordText = new JPasswordField(20);
-        passwordText.setBounds(150, 100, 165, 25);
-        panel.add(passwordText);
 
         JButton loginButton = new JButton("Login");
-        loginButton.setBounds(150, 150, 100, 25);
-        panel.add(loginButton);
 
+        // Adiciona ação ao botão de login
         loginButton.addActionListener(e -> {
             String username = userText.getText();
             String password = new String(passwordText.getPassword());
@@ -52,6 +45,30 @@ public class MainView {
                 JOptionPane.showMessageDialog(frame, "Usuário ou senha inválidos!", "Erro", JOptionPane.ERROR_MESSAGE);
             }
         });
+
+        // Define alinhamento horizontal e vertical
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                        .addComponent(userLabel)
+                                        .addComponent(passwordLabel))
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addComponent(userText)
+                                        .addComponent(passwordText)))
+                        .addComponent(loginButton)
+        );
+
+        layout.setVerticalGroup(
+                layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(userLabel)
+                                .addComponent(userText))
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(passwordLabel)
+                                .addComponent(passwordText))
+                        .addComponent(loginButton)
+        );
     }
 
     private static void openMainScreen() {
@@ -60,9 +77,9 @@ public class MainView {
         mainFrame.setSize(400, 300);
         mainFrame.setLocationRelativeTo(null);
 
-        JButton button = new JButton("Abrir Funcionario");
+        JButton button = new JButton("Criar Projeto");
         button.addActionListener(e -> {
-            JOptionPane.showMessageDialog(mainFrame, "A tela de funcionários será aberta aqui!");
+            JOptionPane.showMessageDialog(mainFrame, "A tela de projetos será aberta aqui!");
         });
 
         JPanel panel = new JPanel();
