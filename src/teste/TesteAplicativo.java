@@ -25,9 +25,8 @@ public class TesteAplicativo {
 
           case "1":
 
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-            
+            System.out.print("\033\143");
+
             user = paginas.registar(data);
 
             if (user == null) { // Verificar se o usuário é válido
@@ -40,13 +39,16 @@ public class TesteAplicativo {
 
           case "2":
            
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
+            System.out.print("\033\143");
+
             id_projeto = paginas.escolherProjeto(user);
 
             if(id_projeto.equals("v")) {
                 pagina = "1";
                 break;
+            } else if(id_projeto.equals("e")) {
+              pagina = "2";
+              break;
             }
             
             pagina = "3";
@@ -54,19 +56,22 @@ public class TesteAplicativo {
 
           case "3":
 
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
+            System.out.print("\033\143");
       
             for(Projeto p: data.ps) {
-      
-              if(p.getId() == Integer.parseInt(id_projeto))
-                proj = p;
+           
+            	if(p.getId() == Integer.parseInt(id_projeto))
+                     proj = p;
+             
             }
       
-           id_tarefa = paginas.mostrarProjeto(proj);
+            id_tarefa = paginas.mostrarProjeto(proj);
 
             if(id_tarefa.equals("v")) {
               pagina = "2";
+              break;
+            } else if(id_tarefa.equals("e")) {
+              pagina = "3";
               break;
             }
             
@@ -75,8 +80,7 @@ public class TesteAplicativo {
           
           case "4":
 
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
+            System.out.print("\033\143");
 
             Tarefa tar = null;
 
@@ -86,18 +90,23 @@ public class TesteAplicativo {
                   tar = t;
             }
     
-            if(paginas.mostarTarefa(tar).equals("v")) {
-                pagina = "3";
-                break;
+            String valor = paginas.mostarTarefa(tar);
 
+            if(valor.equals("v")) {
+              pagina = "3";
+              break;
+            } else if(valor.equals("e")) {
+              pagina = "4";
+              break;
             }
+            
+            
             break;
 
           default:
               throw new AssertionError();
       }
     }
-
 
 
   }
