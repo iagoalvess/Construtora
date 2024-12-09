@@ -18,9 +18,12 @@ public class Telas {
         System.out.print("Código de identificação: ");
         String id = sc.nextLine();
 
-        Usuario u = data.retonarUsuario(id, cpf);
-        
-        return u;
+        try {
+            Usuario u = data.retonarUsuario(id, cpf);
+            return u;
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 
     public String escolherProjetoAuxilar(List<Integer> projetos) {
@@ -33,6 +36,8 @@ public class Telas {
   
         System.out.println(("\n").repeat(2));
         
+        
+        System.out.println("Aperte [v] para voltar");
         System.out.print("Escolha um projeto: ");
 
         String projetoEscolhido = sc.nextLine();
@@ -40,10 +45,15 @@ public class Telas {
         if (projetoEscolhido.equals("v"))
           return projetoEscolhido;
 
-        if (projetos.contains(Integer.parseInt(projetoEscolhido)))
-            return projetoEscolhido;
+        try {
+            if (projetos.contains(Integer.parseInt(projetoEscolhido)))
+                return projetoEscolhido;
+        } catch (NumberFormatException e) {
+            projetoEscolhido = "e"; //para o caso de erro
+        }
+
            
-        return "v";
+        return projetoEscolhido;
     }
 
     
@@ -64,7 +74,8 @@ public class Telas {
         System.out.println((" ").repeat(5) + "APLICATIVO DE GERENCIAMENTO DE PROJETOS" + (" ").repeat(5) + "\n");
         System.out.println(("=").repeat(49));
         System.out.println(("\n").repeat(2));
-  
+        
+       
         System.out.print("projetos acessíveis: ");
        
         if (fu != null) {
@@ -76,6 +87,7 @@ public class Telas {
             projetoEscolhido = escolherProjetoAuxilar(en.getProjetosCoordenados());
         }
 
+        
         return projetoEscolhido;
     }
 
@@ -90,7 +102,8 @@ public class Telas {
         p.retornarRelatorio();
 
         System.out.println(("\n").repeat(2));
-        System.out.print("Escolha um tarefa: ");
+        System.out.println("Aperte [v] para voltar");
+        System.out.print("Escolha uma tarefa: ");
         String tarefaEscolhida = sc.nextLine();
 
         if(tarefaEscolhida.equals("v"))
@@ -98,11 +111,17 @@ public class Telas {
         
         for(Tarefa t: p.hisTarefas.pegarTarefas()) {
 
-            if(t.getId() == Integer.parseInt(tarefaEscolhida))
+            try {
+                if(t.getId() == Integer.parseInt(tarefaEscolhida))
                 return tarefaEscolhida;
+            } catch (NumberFormatException e) {
+                tarefaEscolhida = "e"; //para o caso de erro
+            }
+
+           
         }
 
-        return "v";
+        return tarefaEscolhida;
     }
 
     public String mostarTarefa(Tarefa t) {
@@ -116,12 +135,15 @@ public class Telas {
         t.detalhar();
 
         System.out.println(("\n").repeat(2));
-        System.out.print("voltar: ");
-        String tarefaEscolhida = sc.nextLine();
+        System.out.println("Aperte [v] para voltar");
+        String voltar = sc.nextLine();
 
-        
-        return tarefaEscolhida;
+        if(voltar.equals("v"))
+            return voltar;
+
+        return "e";
     }
 
    
 }
+
