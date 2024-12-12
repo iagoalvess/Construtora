@@ -9,13 +9,13 @@ public class PerfilFuncionario {
     private Date dataDesligamento;
     private StatusFuncionario status;
 
-    public PerfilFuncionario(int numeroIdentificacao, String nome, String cargo, int salario, Date dataContratacao, StatusFuncionario status) {
+    public PerfilFuncionario(int numeroIdentificacao, String nome, String cargo, int salario, Date dataContratacao) {
         this.numeroIdentificacao = numeroIdentificacao;
         this.nome = nome;
         this.cargo = cargo;
         this.salario = salario;
         this.dataContratacao = dataContratacao;
-        this.status = status;
+        this.status = StatusFuncionario.ATIVO;
     }
 
     public void criar() {

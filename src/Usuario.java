@@ -11,6 +11,15 @@ public abstract class Usuario {
         this.cargo = cargo;
     }
 
+    public boolean validarUsuario(int id, String cpf) {
+        
+        return this.cpf.equals(cpf) && this.numeroIdentificacao == id;
+    }
+
+    public String getCargo() {
+        return this.cargo;
+    }
+
     public void visualizarProjeto() {
         System.out.println(nome + " está visualizando projetos.");
     }
@@ -19,5 +28,9 @@ public abstract class Usuario {
 
     public void excluirUsuario() {
         System.out.println("Usuário " + nome + " foi excluído.");
+    }
+
+    public String getNome() {
+        return nome;
     }
 }

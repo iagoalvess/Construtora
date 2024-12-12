@@ -1,6 +1,6 @@
 import java.text.ParseException;
 
-public class TesteAplicativo {
+public class Aplicativo {
     
 
   public static void main(String[] args) throws ParseException {

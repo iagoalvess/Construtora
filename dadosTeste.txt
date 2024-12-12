@@ -1,0 +1,4 @@
+f, 5675, João Silva, 123.456.789-10, Engenheiro, 1
+f, 2456, Maria Souza, 987.654.321-00, Analista, 1, 2
+e, 3456, Carlos Oliveira, 111.222.333-44, Engenheiro, 2
+p, 1, Projeto A, João Silva, Construção, Rua A, 01/01/2023, 01/01/2024
